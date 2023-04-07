@@ -1,6 +1,8 @@
 package com.example.testtaskqulisoft.data.network
 
 
+import com.example.testtaskqulisoft.data.PhotoData
+import com.example.testtaskqulisoft.data.mappers.ResultNetworkToPhotoDataMapper
 import com.google.gson.annotations.SerializedName
 
 data class Result(
@@ -30,4 +32,8 @@ data class Result(
     val user: User,
     @SerializedName("width")
     val width: Int
-)
+) {
+
+    fun mapToPhotoData(mapper: ResultNetworkToPhotoDataMapper) : PhotoData = mapper.map(id, urls.full, urls.small, user.username, description)
+
+}
